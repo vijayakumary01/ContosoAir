@@ -11,12 +11,6 @@ trigger:
     include:
       - 'v.*'
 
-resources:
-  repositories:
-  - repository: ContosoAir
-    
-
-
 pool:
   vmImage: ubuntu-latest
 
