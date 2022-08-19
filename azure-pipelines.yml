@@ -40,7 +40,7 @@ stages:
         displayName: 'Publish Artifact: drop'
 
 - stage: 'Packaging'
-  condition: always()
+  condition: 'always(),in(variables['Build.SourceBranch'], 'refs/heads/master', 'refs/tags/v.*')'
   
   pool:
     vmImage: 'ubuntu-latest'
