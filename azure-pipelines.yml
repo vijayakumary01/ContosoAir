@@ -46,7 +46,7 @@ stages:
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
-  - job: 'checker_account'
+  - job: 'Packaging_account'
    
     steps:
       - task: Npm@1
