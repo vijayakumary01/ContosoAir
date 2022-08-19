@@ -6,7 +6,10 @@
 trigger:
   branches:
     include:
-    - 'master'
+      - refs/tags/v.*
+  tags:
+    include:
+      - 'v.*'
 
 stages:
 - stage: 'checker'
