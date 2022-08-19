@@ -20,7 +20,7 @@ stages:
         echo See https://aka.ms/yaml
       displayName: 'Run a multi-line script'
 - stage: 'Packaging'
-  condition: "and(always(), eq(variables['Build.Reason'], 'PullRequest'))"
+  condition: and(always(),variables['Build.SourceBranch'], 'refs/heads/fix01', 'refs/tags/v.*')
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
