@@ -10,7 +10,7 @@ trigger:
 
 stages:
 - stage: 'checker'
-  condition: "and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))"
+  //condition: "and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))"
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
