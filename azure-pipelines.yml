@@ -7,7 +7,7 @@ trigger:
   branches:
     include:
       - master
-      - fix02
+      - fix01
   tags:
     include:
       - v.*
