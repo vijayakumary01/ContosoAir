@@ -1,7 +1,7 @@
 trigger:
   tags:
    include:
-      - '*'
+      - release.*
 
 stages:
 - stage: 'checker'
