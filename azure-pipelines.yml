@@ -44,7 +44,7 @@ stages:
         displayName: 'Publish Artifact: drop'
 
 - stage: 'Packaging'
-  condition: and(succeeded(),variables['Build.SourceBranch'], 'refs/heads/master', 'refs/tags/v.*')
+ 
   
   pool:
     vmImage: 'ubuntu-latest'
