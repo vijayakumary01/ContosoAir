@@ -16,7 +16,7 @@ stages:
 - stage: 'checker'
   
   pool:
-    name: VijayPool
+    vmImage: windows-latest
   jobs:
   - job: 'checker_account'
    
