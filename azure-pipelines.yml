@@ -11,12 +11,13 @@ trigger:
   tags:
     include:
       - v.*
+pool:
+  vmImage: ubuntu-latest
 
 stages:
 - stage: 'checker'
   
-  pool:
-    vmImage: windows-latest
+
   jobs:
   - job: 'checker_account'
    
@@ -47,18 +48,18 @@ stages:
 - stage: 'Packaging'
  
   
-  pool:
-    vmImage: 'ubuntu-latest'
+
   jobs:
   - job: 'Packaging_account'
    
     steps:
+      - checkout: self
       - task: Npm@1
         inputs:
           command: 'custom'
           customcommand: 'install --production'
-      - script: |
-          npm install
+      # - script: |
+      #     npm install
           
       
       - task: ArchiveFiles@2
