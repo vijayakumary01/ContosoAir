@@ -16,7 +16,7 @@ stages:
 - stage: 'checker'
   
   pool:
-    vmImage: 'ubuntu-latest'
+    name: VijayPool
   jobs:
   - job: 'checker_account'
    
