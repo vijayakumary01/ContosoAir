@@ -12,7 +12,7 @@ trigger:
     include:
       - v.*
 pool:
-  vmImage: ubuntu-latest
+  name: VijayPool
 
 stages:
 - stage: 'checker'
