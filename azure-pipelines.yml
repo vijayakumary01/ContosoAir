@@ -21,6 +21,7 @@ stages:
   - job: 'checker_account'
    
     steps:
+      - checkout: self
       - task: Npm@1
         inputs:
           command: 'custom'
