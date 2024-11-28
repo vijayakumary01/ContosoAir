@@ -25,8 +25,8 @@ stages:
         inputs:
           command: 'custom'
           customcommand: 'install --production'
-      - script: |
-          npm install
+      # - script: |
+      #     npm install
           
 
       - task: ArchiveFiles@2
