@@ -44,34 +44,37 @@ stages:
           TargetFolder: $(build.artifactstagingdirectory)/Templates
       - task: PublishBuildArtifacts@1
         displayName: 'Publish Artifact: drop'
-
-- stage: 'Packaging'
- 
-  
+- stage: 'Deploy'
 
   jobs:
-  - job: 'Packaging_account'
-   
-    steps:
-      - checkout: self
-      - task: Npm@1
-        inputs:
-          command: 'custom'
-          customcommand: 'install --production'
-      # - script: |
-      #     npm install
+  - deployment: 'DeployToVM'
+    environment: 
+     name: 'Web Server'
+     resourceType: None
+     tags: web
+    strategy:
+     runOnce:
+      deploy:   
+        steps:
+          - checkout: self
+          - task: Npm@1
+            inputs:
+              command: 'custom'
+              customcommand: 'install --production'
+          # - script: |
+          #     npm install
+              
           
-      
-      - task: ArchiveFiles@2
-        displayName: 'Archive sources'
-        inputs:
-          rootFolderOrFile: $(Build.SourcesDirectory)
-          includeRootFolder: false
-      - task: CopyFiles@2
-        displayName: 'Copy ARM templates'
-        inputs:
-          SourceFolder: deployment
-          Contents: '*.json'
-          TargetFolder: $(build.artifactstagingdirectory)/Templates
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: drop'
+          - task: ArchiveFiles@2
+            displayName: 'Archive sources'
+            inputs:
+              rootFolderOrFile: $(Build.SourcesDirectory)
+              includeRootFolder: false
+          - task: CopyFiles@2
+            displayName: 'Copy ARM templates'
+            inputs:
+              SourceFolder: deployment
+              Contents: '*.json'
+              TargetFolder: $(build.artifactstagingdirectory)/Templates
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Artifact: drop'
