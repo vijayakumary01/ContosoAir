@@ -11,51 +11,26 @@ trigger:
   tags:
     include:
       - v.*
-pool:
-  vmImage: ubuntu-latest
 
 stages:
 - stage: 'checker'
   
 
   jobs:
-  - job: 'checker_account'
-   
-    steps:
-      - checkout: self
-      - task: Npm@1
-        inputs:
-          command: 'custom'
-          customcommand: 'install --production'
-      # - script: |
-      #     npm install
-          
-
-      - task: ArchiveFiles@2
-        displayName: 'Archive sources'
-        inputs:
-          rootFolderOrFile: $(Build.SourcesDirectory)
-          includeRootFolder: false
-      - task: CopyFiles@2
-        displayName: 'Copy ARM templates'
-        inputs:
-          SourceFolder: deployment
-          Contents: '*.json'
-          TargetFolder: $(build.artifactstagingdirectory)/Templates
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Artifact: drop'
-- stage: 'Deploy'
-
-  jobs:
-  - deployment: 'DeployToVM'
+  - deployment: DeployWeb
+    displayName: deploy Web App
+    pool:
+      vmImage: 'Ubuntu-latest'
+    # creates an environment if it doesn't exist
     environment: 
-     name: 'Web Server'
-     resourceType: None
-     tags: web
+      name: 'smarthotel-dev'
+      resourceType: None
     strategy:
-     runOnce:
-      deploy:   
-        steps:
+      runOnce:
+        deploy:
+          steps:
+   
+
           - checkout: self
           - task: Npm@1
             inputs:
@@ -64,7 +39,7 @@ stages:
           # - script: |
           #     npm install
               
-          
+
           - task: ArchiveFiles@2
             displayName: 'Archive sources'
             inputs:
