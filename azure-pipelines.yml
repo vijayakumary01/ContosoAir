@@ -14,8 +14,6 @@ trigger:
 
 stages:
 - stage: 'checker'
-  
-
   jobs:
   - deployment: DeployWeb
     displayName: deploy Web App
@@ -23,13 +21,10 @@ stages:
       vmImage: 'Ubuntu-latest'
     # creates an environment if it doesn't exist
     environment: smarthotel-dev
-
     strategy:
       runOnce:
         deploy:
           steps:
-   
-
           - checkout: self
           - task: Npm@1
             inputs:
@@ -37,8 +32,6 @@ stages:
               customcommand: 'install --production'
           # - script: |
           #     npm install
-              
-
           - task: ArchiveFiles@2
             displayName: 'Archive sources'
             inputs:
